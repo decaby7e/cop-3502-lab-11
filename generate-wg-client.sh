@@ -1,11 +1,15 @@
 #!/bin/bash
 
 # PARAMETERS: make_client_config(SERVER_PUBKEY, SERVER_IP, SERVER_PORT)
+error() {
+	echo -e "Error: $1"
+}
+
 make_client_config() {
     
     
     if ( (($# != 4)) ); then
-        echo "Error: Not enough parameters."
+	error "Not enough parameters"
         usage
         exit 1
 
@@ -14,7 +18,7 @@ make_client_config() {
     CLIENT_DIR=client-$CLIENT_NUM
 
     if [ -d $CLIENT_DIR ]; then
-        echo -e "Error: $CLIENT_DIR already exists. Not overwriting."
+        error "$CLIENT_DIR already exists. Not overwriting."
         exit 1
         
     else
